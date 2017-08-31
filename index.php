@@ -1,21 +1,14 @@
 <?php
+	
+	if(!isset($_SESSION['username'])){
+		header('location: login.php');
+	}
 
-$servername = "localhost";
-	$username = "root";
-	$password = "root";
-	$dbname = "userInfo";
-
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	if ($conn->connect_error) {
-	    die("Connection failed: " . $conn->connect_error);
-	} 
-
+	require 'db/db.php'; 
 
 	$sql = "SELECT * FROM user_info";
 	$result = $conn->query($sql);
 	
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,7 +45,7 @@ $servername = "localhost";
 									<td><?php echo $row['date']; ?></td>
 									<td><?php echo $row['website']; ?></td>
 									<td><?php echo $row['username']; ?></td>			
-									<td><?php echo $row['password']; ?></td>
+									<td><?php echo $row	['password']; ?></td>
 								</tr>
 							<?php
 								}
